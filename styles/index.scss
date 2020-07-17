@@ -1,0 +1,113 @@
+@import url(https://fonts.googleapis.com/css?family=Reem+Kufi);
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+h1 {
+  font-weight: bold;
+  color: #000000 !important;
+  font-size: 45px !important;
+  text-align: center;
+  font-family: Righteous;
+}
+
+h2 {
+  font-weight: bold;
+  color: #000000 !important;
+  font-size: 35px !important;
+  text-align: left;
+  font-family: Righteous;
+}
+
+h3 {
+  font-family: "Reem Kufi";
+}
+
+h4 {
+  font-family: "Reem Kufi";
+  font-weight: bold;
+}
+
+h5 {
+  color: #000000 !important;
+  text-align: center;
+  font-family: Righteous;
+}
+
+body {
+  background-color: #fef4c8;
+}
+
+p {
+  text-align: center;
+  font-family: "Reem Kufi";
+  font-size: 18px;
+}
+
+a {
+  color: black;
+}
+
+a.fancy {
+  color: #4e4e4e;
+  text-align: center;
+  font-family: "Reem Kufi";
+}
+
+.instructions {
+  text-align: left;
+  font-size: 16px;
+  font-family: Montserrat;
+}
+
+.spacerAboveTitle {
+  height: 160px;
+}
+
+.tinySpacer {
+  height: 20px;
+}
+
+.spacerAboveBox {
+  height: 45px;
+}
+
+.spacerAboveButton {
+  height: 100px;
+  display: none;
+}
+
+.spacerAboveHelp {
+  height: 100px;
+}
+
+.btn-colour-1 {
+  color: #fff;
+  background-color: #000000;
+  border-color: #4e4e4e;
+  letter-spacing: 0.05em;
+  font-family: "Reem Kufi";
+}
+
+.btn-colour-1:hover,
+.btn-colour-1:active,
+.btn-colour-1:focus,
+.btn-colour-1.active {
+  /* let's darken #004E64 a bit for hover effect */
+  background: #4e4e4e;
+  color: #ffffff;
+  border-color: #4e4e4e;
+}
+
+.outline {
+  background-color: transparent;
+  color: inherit;
+  transition: all 0.25s;
+}
+
+.btn-return.outline {
+  color: #888888;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
