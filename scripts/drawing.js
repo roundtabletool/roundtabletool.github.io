@@ -79,7 +79,6 @@ SMALL_FONT = "26px Reem Kufi";
 
 function getFormat(names) {
   totalNames = names["left"].concat(names["right"]).length;
-  console.log(totalNames);
   if (totalNames > 40) {
     startAngle = MORE_NAMES_START_ANGLE;
     angleSpan = MORE_NAMES_SPAN;
@@ -107,10 +106,10 @@ function addNamesToCircle() {
 
   ctx = canvas.getContext("2d");
   ctx.fillStyle = "black";
-  ctx.font = format["font"];
 
   for (side of ["right", "left"]) {
     for (var i = 0; i < names[side].length; i++) {
+      ctx.font = format["font"];
       textOffsets = getTextPosition(
         circle["textRadius"],
         format["startAngle"],
@@ -207,6 +206,29 @@ function resize() {
   } else {
     spacerOuter.style.display = "none";
   }
+}
+
+function roundRect(x, y, w, h, radius)
+{
+  console.log("Drowing round rect");
+  console.log(x, y, w, h, radius)
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  var r = x + w;
+  var b = y + h;
+  context.beginPath();
+  context.strokeStyle="green";
+  context.lineWidth="4";
+  context.moveTo(x+radius, y);
+  context.lineTo(r-radius, y);
+  context.quadraticCurveTo(r, y, r, y+radius);
+  context.lineTo(r, y+h-radius);
+  context.quadraticCurveTo(r, b, r-radius, b);
+  context.lineTo(x+radius, b);
+  context.quadraticCurveTo(x, b, x, b-radius);
+  context.lineTo(x, y+radius);
+  context.quadraticCurveTo(x, y, x+radius, y);
+  context.stroke();
 }
 
 $(window).on("resize", resize);
