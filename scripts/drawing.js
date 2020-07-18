@@ -19,11 +19,10 @@ function switchTab() {
 
 function redrawBackground(showingTable) {
   canvas = document.getElementById("canvas");
-
   backDrop = document.getElementById("backDrop");
   if (showingTable) {
     backgroundSize = "contain"; // Ensmallen the background if showing the table with names
-    minHeight = "850px";
+    minHeight = "700px";
   } else {
     backgroundSize = "cover";
     minHeight = "650px";
@@ -44,7 +43,7 @@ function getNamesFromTextArea() {
   finalNames = [];
   for (maybeName of namesList) {
     if (maybeName.trim().length) {
-      finalNames.push(maybeName.trim().toUpperCase());
+      finalNames.push(maybeName.trim());
     }
   }
   if (finalNames.length % 2 == 1) {
@@ -121,7 +120,7 @@ function addNamesToCircle() {
         side
       );
       ctx.fillText(
-        names[side][i],
+        names[side][i].toUpperCase(),
         circle["centre_x"] + textOffsets["x"],
         circle["centre_y"] + textOffsets["y"]
       );
@@ -136,14 +135,8 @@ function addNamesToCircle() {
   );
   redrawBackground(true);
   var allNames = names["right"].concat(names["left"]);
-  backDrop = document.getElementById("backDrop");
-  backDrop.setAttribute(
-    "aria-label",
-    "A white circle with a black outline, around which the following names are arranged:\n" +
-      allNames.join("\n")
-  );
-  backDrop.style.display = "none";
-  backDrop.style.display = "block";
+  descriptionDiv = document.getElementById("textDes");
+  descriptionDiv.innerHTML = "<div class=\"imgDesc\" >Image description: A white circle with a black outline, around which the following names are arranged:\n" + allNames.join(", ") + "</div>"
 }
 
 function getTextPosition(radius, startAngle, span, i, n, side) {
@@ -170,6 +163,8 @@ function drawInitial() {
   canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
 
+  descriptionDiv = document.getElementById("textDes");
+  descriptionDiv.innerHTML = "";
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#fef4c8";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -215,3 +210,11 @@ function resize() {
 }
 
 $(window).on("resize", resize);
+
+$(document).ready(function(){
+  resize();
+    $('#show').click(function() {
+      // $('.menu').toggle("slide");
+      $('.menu').toggle(0);
+    });
+});

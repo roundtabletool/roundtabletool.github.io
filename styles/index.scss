@@ -9,6 +9,13 @@ h1 {
   font-family: Righteous;
 }
 
+h1.small {
+  color: #000000 !important;
+  text-align: center;
+  font-family: Righteous;
+  font-size: 22px !important;
+}
+
 h2 {
   font-weight: bold;
   color: #000000 !important;
@@ -26,11 +33,6 @@ h4 {
   font-weight: bold;
 }
 
-h5 {
-  color: #000000 !important;
-  text-align: center;
-  font-family: Righteous;
-}
 
 body {
   background-color: #fef4c8;
@@ -44,13 +46,26 @@ p {
 
 a {
   color: black;
+  text-decoration: underline;
 }
 
 a.fancy {
   color: #4e4e4e;
   text-align: center;
+  text-decoration: underline;
   font-family: "Reem Kufi";
 }
+
+
+.mocklink {
+  color: #4e4e4e;
+  text-decoration: underline;
+  font-family: "Reem Kufi";
+}
+
+.imgDesc {
+  font-size: 14px;
+  font-family: Montserrat}
 
 .instructions {
   text-align: left;
@@ -59,7 +74,7 @@ a.fancy {
 }
 
 .spacerAboveTitle {
-  height: 160px;
+  height: 140px;
 }
 
 .tinySpacer {
@@ -67,7 +82,7 @@ a.fancy {
 }
 
 .spacerAboveBox {
-  height: 45px;
+  height: 35px;
 }
 
 .spacerAboveButton {
@@ -76,7 +91,7 @@ a.fancy {
 }
 
 .spacerAboveHelp {
-  height: 100px;
+  height: 90px;
 }
 
 .btn-colour-1 {
