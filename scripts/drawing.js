@@ -1,6 +1,24 @@
 var currentTab = 1; // Before we switch to first tab (janky)
 switchTab(); // Display the first tab
 
+function addWatermark() {
+  canvas = document.getElementById("canvas");
+  ctx.font = "26px Righteous";
+  ctx = canvas.getContext("2d");
+  ctx.textAlign = "right";
+
+  ctx.fillText("The Round Table", canvas.width - 10, canvas.height - 50);
+
+  ctx.font = "26px Reem Kufi";
+  ctx.fillText("www.roundtabletool.com", canvas.width - 10, canvas.height - 10);
+}
+
+download_img = function(el) {
+  addWatermark();
+  var image = canvas.toDataURL("image/png");
+  el.href = image;
+};
+
 function switchTab() {
   newTab = (currentTab + 1) % 2;
   var tabs = document.getElementsByClassName("tab");
@@ -19,7 +37,6 @@ function switchTab() {
 
 function redrawBackground(showingTable) {
   canvas = document.getElementById("canvas");
-  backDrop = document.getElementById("backDrop");
   if (showingTable) {
     backgroundSize = "contain"; // Ensmallen the background if showing the table with names
     minHeight = "700px";
@@ -27,14 +44,18 @@ function redrawBackground(showingTable) {
     backgroundSize = "cover";
     minHeight = "650px";
   }
-  backDrop.style =
-    "position:relative;background-repeat:no-repeat;background-size:" +
-    backgroundSize +
-    ";background-position:center;min-height:" +
-    minHeight +
-    ";background-image:url(" +
-    canvas.toDataURL() +
-    ");";
+
+  for (elementName of ["formBackDrop", "displayBackDrop"]) {
+    backDrop = document.getElementById(elementName);
+    backDrop.style =
+      "position:relative;background-repeat:no-repeat;background-size:" +
+      backgroundSize +
+      ";background-position:center;min-height:" +
+      minHeight +
+      ";background-image:url(" +
+      canvas.toDataURL() +
+      ");";
+  }
 }
 
 function getNamesFromTextArea() {
@@ -62,8 +83,8 @@ function getCircleInfo(canvas) {
   return {
     centre_x: canvas.width / 2,
     centre_y: canvas.height / 2,
-    radius: canvas.height * 0.45,
-    textRadius: canvas.height * 0.45 * 1.1
+    radius: canvas.height * 0.44,
+    textRadius: canvas.height * 0.44 * 1.1
   };
 }
 
@@ -74,11 +95,12 @@ MORE_NAMES_START_ANGLE = Math.PI / 16;
 MORE_NAMES_SPAN = 7 * Math.PI / 8;
 
 LARGE_FONT = "32px Reem Kufi";
-MEDIUM_FONT = "24px Reem Kufi";
-SMALL_FONT = "26px Reem Kufi";
+MEDIUM_FONT = "26px Reem Kufi";
+SMALL_FONT = "24px Reem Kufi";
 
 function getFormat(names) {
   totalNames = names["left"].concat(names["right"]).length;
+  console.log(totalNames);
   if (totalNames > 40) {
     startAngle = MORE_NAMES_START_ANGLE;
     angleSpan = MORE_NAMES_SPAN;
@@ -106,10 +128,10 @@ function addNamesToCircle() {
 
   ctx = canvas.getContext("2d");
   ctx.fillStyle = "black";
+  ctx.font = format["font"];
 
   for (side of ["right", "left"]) {
     for (var i = 0; i < names[side].length; i++) {
-      ctx.font = format["font"];
       textOffsets = getTextPosition(
         circle["textRadius"],
         format["startAngle"],
@@ -135,7 +157,10 @@ function addNamesToCircle() {
   redrawBackground(true);
   var allNames = names["right"].concat(names["left"]);
   descriptionDiv = document.getElementById("textDes");
-  descriptionDiv.innerHTML = "<div class=\"imgDesc\" >Image description: A white circle with a black outline, around which the following names are arranged:\n" + allNames.join(", ") + "</div>"
+  descriptionDiv.innerHTML =
+    '<div class="imgDesc" >Image description: A white circle with a black outline, around which the following names are arranged:\n' +
+    allNames.join(", ") +
+    "</div>";
 }
 
 function getTextPosition(radius, startAngle, span, i, n, side) {
@@ -208,35 +233,12 @@ function resize() {
   }
 }
 
-function roundRect(x, y, w, h, radius)
-{
-  console.log("Drowing round rect");
-  console.log(x, y, w, h, radius)
-  var canvas = document.getElementById("canvas");
-  var context = canvas.getContext("2d");
-  var r = x + w;
-  var b = y + h;
-  context.beginPath();
-  context.strokeStyle="green";
-  context.lineWidth="4";
-  context.moveTo(x+radius, y);
-  context.lineTo(r-radius, y);
-  context.quadraticCurveTo(r, y, r, y+radius);
-  context.lineTo(r, y+h-radius);
-  context.quadraticCurveTo(r, b, r-radius, b);
-  context.lineTo(x+radius, b);
-  context.quadraticCurveTo(x, b, x, b-radius);
-  context.lineTo(x, y+radius);
-  context.quadraticCurveTo(x, y, x+radius, y);
-  context.stroke();
-}
-
 $(window).on("resize", resize);
 
-$(document).ready(function(){
+$(document).ready(function() {
   resize();
-    $('#show').click(function() {
-      // $('.menu').toggle("slide");
-      $('.menu').toggle(0);
-    });
+  $("#show").click(function() {
+    // $('.menu').toggle("slide");
+    $(".menu").toggle(0);
+  });
 });

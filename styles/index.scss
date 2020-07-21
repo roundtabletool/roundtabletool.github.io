@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Reem+Kufi);
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Righteous);
 
 h1 {
   font-weight: bold;
@@ -33,7 +34,6 @@ h4 {
   font-weight: bold;
 }
 
-
 body {
   background-color: #fef4c8;
 }
@@ -63,7 +63,6 @@ a.fancy {
   color: #4e4e4e;
 }
 
-
 .mocklink {
   color: #4e4e4e;
   text-decoration: underline;
@@ -72,7 +71,8 @@ a.fancy {
 
 .imgDesc {
   font-size: 14px;
-  font-family: Montserrat}
+  font-family: Montserrat;
+}
 
 .instructions {
   text-align: left;
@@ -81,7 +81,7 @@ a.fancy {
 }
 
 .spacerAboveTitle {
-  height: 120px;
+  height: 140px;
 }
 
 .tinySpacer {
@@ -93,12 +93,18 @@ a.fancy {
 }
 
 .spacerAboveButton {
-  height: 100px;
+  height: 120px;
   display: none;
 }
 
 .spacerAboveHelp {
-  height: 90px;
+  height: 20px;
+}
+
+.btn-sml {
+  padding: 9px 9px;
+  font-size: 13px;
+  border-radius: 6px;
 }
 
 .btn-colour-1 {
@@ -122,11 +128,9 @@ a.fancy {
 .outline {
   background-color: transparent;
   color: inherit;
+  text-decoration: none !important;
   transition: all 0.25s;
-}
-
-.btn-return.outline {
-  color: #888888;
+  float: right;
 }
 
 /* Hide all steps by default: */

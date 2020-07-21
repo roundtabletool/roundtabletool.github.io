@@ -15,11 +15,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Reem+Kufi" />
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
 
   <link rel="stylesheet" type="text/css" href="styles/index.scss">
 
@@ -28,69 +24,77 @@
 <body onload="resize()">
 
   <div class="container">
-    <div id="backDrop">
 
-      <div class="tab">
-        <!-- Form entry tab -->
+    <div class="tab">
+      <!-- Form entry tab -->
 
-        <div id="formVisuals">
-          <div class="col-xs-6 col-xs-offset-3 text-center">
-            <canvas id="canvas" width="1600" height="900" style="display:none"></canvas>
+      <div id="formVisuals">
+        <div class="col-xs-8 col-xs-offset-2 text-center">
+          <div id="formBackDrop">
+            <canvas id="canvas" width="1600" height="1000" style="display:none"></canvas>
 
             <div class="spacerAboveTitle"></div>
+
             <h1 class="small"> GIVE ALL A SEAT AT</h1>
+
             <div class="tinySpacer"></div>
+
             <h1> The Round Table </h1>
+
             <div class="spacerAboveBox"></div>
+
             <div class="form-group">
               <div class="row">
-                <div class="col-xs-10 col-xs-offset-1">
-                  <label for="names">Participants </label> &nbsp; <small for="names" id="namesHelp" class="form-text text-muted">Enter participants' names, one per line</small></div>
+                <div class="col-xs-8 col-xs-offset-2">
+                  <label for="names"> &nbsp; &nbsp; &nbsp; Participants </label> &nbsp; <small for="names" id="namesHelp" class="form-text text-muted">Enter participants' names, one per line</small></div>
               </div>
               <center>
-                <textarea class="form-control" rows="5" required id="names" style="max-width:90%"></textarea>
+                <textarea class="form-control" rows="5" required id="names" style="max-width:60%"></textarea>
               </center>
-              <div class="col-xs-6"></div>
 
             </div>
 
-            <div class="tinySpacer"></div>
             <div id="spacerAboveButton" class="spacerAboveButton"></div>
             <button id="quickCreateButton" type="button" class="btn btn-colour-1 center-block" onclick="switchTab()">Make it!</button>
 
             <div class="tinySpacer"></div>
-            <center> <a class="fancy" href="#" data-toggle="modal" data-target="#howModal">How to use this tool</a> </center>
+            <center> <a class="fancy" href="#" data-toggle="modal"
+                                               data-target="#howModal">How to
+                                               use this tool</a> </center>
             <br />
           </div>
         </div>
-        <div class="col-xs-10 col-xs-offset-1 text-center">
-          <div class="spacerAboveHelp"></div>
-          <p style="font-size:22px">Use this tool to facilitate virtual gatherings where everyone has a voice.</p>
-          <div class="tinySpacer"></div>
-          <center> <a class="fancy" href="#" data-toggle="modal" data-target="#storyModal">About</a> </center>
+      </div>
+      <div class="col-xs-10 col-xs-offset-1 text-center">
+        <div class="spacerAboveHelp"></div>
+        <p style="font-size:22px">Use this tool to facilitate virtual gatherings where everyone has a voice.</p>
+        <div class="tinySpacer"></div>
+        <center> <a class="fancy" href="#" data-toggle="modal" data-target="#storyModal">About</a> </center>
 
+      </div>
+    </div>
+    <div class="tab">
+      <!-- Table display tab -->
+      <div class="tinySpacer"></div>
+      <div class="tinySpacer"></div>
+      <div class="row">
+        <div class="col-xs-8">
+          <h2> The Round Table </h2>
+          <a class="fancy" href="#" data-toggle="modal"
+                                    data-target="#howModal">How to use this tool</a> <br />
+          <div id="show" class="mockLink">Show image description</div>
+          <div class="menu" id="textDes" style="display: none;"></div>
+        </div>
+        <div class="col-xs-2 col-xs-offset-1 text-right">
+          <br />
+          <button id="backButton" type="button" class="btn btn-sml btn-colour-1 outline float-right" onclick="switchTab()">Edit participants</button> <br /> <br /> <a id="downloadButton" type="button" class="btn btn-sml btn-colour-1 outline float-right"
+            download="roundtabletool.png" href="" onclick="download_img(this);">Download</a>
         </div>
       </div>
-      <div class="tab">
-        <!-- Table display tab -->
-        <div class="tinySpacer"></div>
-        <div class="tinySpacer"></div>
-        <div class="row">
-          <div class="col-xs-8">
-            <h2> The Round Table </h2>
-          </div>
-          <div class="col-xs-3 col-xs-offset-1">
-            <button id="backButton" type="button" class="btn btn-sml btn-colour-1 outline" onclick="switchTab()">Edit participants</button>
-          </div>
+      <div class="row">
+        <div class="col-10 col-offset-1">
+          <div id="displayBackDrop"> </div>
 
-        </div>
-        <div class="row">
-          <div class="col-xs-2">
-            <a class="fancy" href="#" data-toggle="modal" data-target="#howModal">How to use this tool</a> <br />
-            <div id="show" class="mockLink">Show image description</div>
-            <div class="menu" id="textDes" style="display: none;"></div>
-            <br /> <br />
-          </div>
         </div>
       </div>
     </div>
@@ -103,6 +107,7 @@
         <div class="modal-body">
           <h3 align="center">Manage the chaos of online meetings by giving everyone equal space at a virtual table.</h3>
           <br /> <br />
+
 
           <center>
           <figure class="figure">
@@ -155,7 +160,7 @@
         <div class="modal-body">
 
           <h4 align="center"> Our Story </h4>
-<br />
+          <br />
           <div class="instructions">
             In zoom meetings for our “Race After Technology” book club, we found that when people could see themselves "sitting at the table", it not only visually got everyone on the same page, but also created accountability for showing up and a clear view of where
             we were in our conversation and whose turn it was to speak, and helped the facilitator do the work of facilitation without having to be ever-present and choosing speakers on the fly.
@@ -180,8 +185,11 @@
       </div>
     </div>
 
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 
-<script src="scripts/drawing.js"></script>
+    <script src="scripts/drawing.js"></script>
+</body>
 
 </html>
