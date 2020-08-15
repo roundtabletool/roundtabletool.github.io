@@ -1,142 +1,119 @@
 <html lang="en">
 
 <head>
-
   <!-- Required meta tags always come first -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
   <title>The Round Table -- manage the chaos of online meetings</title>
-
   <!-- Fonts -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Righteous" />
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat" />
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Reem+Kufi" />
-
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
-
   <link rel="stylesheet" type="text/css" href="styles/index.scss">
-
 </head>
 
 <body onload="resize()">
-
   <div class="container">
-
     <div class="tab">
-      <!-- Form entry tab -->
-
-      <div id="formVisuals">
-        <div class="col-xs-8 col-xs-offset-2 text-center">
-          <div id="formBackDrop">
-            <canvas id="canvas" width="1600" height="1000" style="display:none"></canvas>
-
-            <div class="spacerAboveTitle"></div>
-
-            <h1 class="small"> GIVE ALL A SEAT AT</h1>
-
-            <div class="tinySpacer"></div>
-
-            <h1> The Round Table </h1>
-
-            <div class="spacerAboveBox"></div>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col-xs-8 col-xs-offset-2">
-                  <label for="names"> &nbsp; &nbsp; &nbsp; Participants </label> &nbsp; <small for="names" id="namesHelp" class="form-text text-muted">Enter participants' names, one per line</small></div>
+      <div class="col-xs-8 col-xs-offset-2 text-center">
+        <div id="formBackDrop">
+          <canvas id="canvas" width="1600" height="1000" style="display:none"></canvas>
+          <div class="spacerAboveTitle"></div>
+          <h1 class="small"> GIVE ALL A SEAT AT</h1>
+          <div class="tinySpacer"></div>
+          <h1> The Round Table </h1>
+          <div class="spacerAboveBox"></div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <label for="names"> &nbsp; &nbsp; &nbsp; Participants </label> &nbsp; <small id="namesHelp" class="form-text text-muted">Enter participants' names, one per line</small>
               </div>
-              <center>
-                <textarea class="form-control" rows="5" required id="names" style="max-width:60%"></textarea>
-              </center>
-
             </div>
-
-            <div id="spacerAboveButton" class="spacerAboveButton"></div>
-            <button id="quickCreateButton" type="button" class="btn btn-colour-1 center-block" onclick="switchTab()">Make it!</button>
-
-            <div class="tinySpacer"></div>
-            <center> <a class="fancy" href="#" data-toggle="modal"
-                                               data-target="#howModal">How to
-                                               use this tool</a> </center>
-            <br />
+            <center>
+              <textarea class="form-control" rows="5" required id="names" style="max-width:60%"></textarea>
+              <p style="font-size:14px"><span id="centerTextPrefix">Default center text: </span> &nbsp; <i><span id="centerText">Choose who will start, then flow clockwise.</span></i> &nbsp; <a class="fancy" href="#" data-toggle="modal" data-target="#textModal">Modify</a>
+              </p>
+            </center>
           </div>
+          <div id="spacerAboveButton" class="spacerAboveButton"></div>
+          <button id="quickCreateButton" type="button" class="btn btn-colour-1 center-block" onclick="switchTab()">Make it!</button>
+          <br />
         </div>
       </div>
       <div class="col-xs-10 col-xs-offset-1 text-center">
-        <div class="spacerAboveHelp"></div>
-        <p style="font-size:22px">Use this tool to facilitate virtual gatherings where everyone has a voice.</p>
-        <div class="tinySpacer"></div>
-        <center> <a class="fancy" href="#" data-toggle="modal" data-target="#storyModal">About</a> </center>
-
+        <p style="font-size:18px">Use this tool to facilitate virtual gatherings where everyone has a voice.</p>
       </div>
     </div>
     <div class="tab">
-      <!-- Table display tab -->
-      <div class="tinySpacer"></div>
-      <div class="tinySpacer"></div>
-      <div class="row">
-        <div class="col-xs-8">
-          <h2> The Round Table </h2>
-          <a class="fancy" href="#" data-toggle="modal"
-                                    data-target="#howModal">How to use this tool</a> <br />
-          <div id="show" class="mockLink">Show image description</div>
-          <div class="menu" id="textDes" style="display: none;"></div>
-        </div>
-        <div class="col-xs-2 col-xs-offset-1 text-right">
-          <br />
-          <button id="backButton" type="button" class="btn btn-sml btn-colour-1 outline float-right" onclick="switchTab()">Edit participants</button> <br /> <br /> <a id="downloadButton" type="button" class="btn btn-sml btn-colour-1 outline float-right"
-            download="roundtabletool.png" href="" onclick="download_img(this);">Download</a>
-        </div>
-      </div>
       <div class="row">
         <div class="col-10 col-offset-1">
           <div id="displayBackDrop"> </div>
-
         </div>
+      </div>
+      <p style="font-size:18px"><br/></p>
+    </div>
+
+  </div>
+  <div class="container-fluid bg-x">
+    <div class="row"> <br />
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-lg-offset-1" align="left">
+        <h2> The Round Table </h2>
+        <div class="lilp"> roundtabletool.com </div>
+      </div>
+      <div class="col-lg-4" align="center">
+        <a class="fancy" href="#" data-toggle="modal" data-target="#storyModal">About</a> <br />
+        <a class="fancy" href="#" data-toggle="modal" data-target="#howModal">How to use this tool</a> <br />
+        <div id="show" class="mockLink">Show image description</div>
+        <div class="menu" id="textDes" style="display: none;"></div>
+      </div>
+      <div class="col-lg-3" align="right">
+        <div id="buttonDiv">
+          <button id="backButton" class="btn btn-sml btn-colour-1 outline float-right" onclick="switchTab()">Edit participants</button> <br /> <br /><a id="downloadButton" class="btn btn-sml btn-colour-1 outline float-right" download="roundtabletool.png"
+            href="" onclick="download_img(this);">Download</a> <br /> </div>
       </div>
     </div>
   </div>
-  </div>
-
   <div class="modal fade" id="howModal" tabindex="-1" role="dialog" aria-labelledby="howModal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-body">
           <h3 align="center">Manage the chaos of online meetings by giving everyone equal space at a virtual table.</h3>
           <br /> <br />
-
-
           <center>
-          <figure class="figure">
-  <img src="example.jpg" class="figure-img img-fluid rounded" alt="A white
-            circle on a yellow backround, with 16 names arranged around it."
-                                                              style="width:50%">
-  <figcaption class="figure-caption">Example: Participants names will be equally placed around a virtual “round table”. The facilitator can pose a question and indicate who will go first, then people take their turn to speak as the conversation flows clockwise.</figcaption>
-</figure>
+            <figure class="figure">
+              <img src="example.jpg" class="figure-img img-fluid rounded" alt="A white
+                           circle on a yellow backround, with 16 names arranged around it." style="width:50%">
+              <figcaption class="figure-caption">Example: Participants names will be equally placed around a virtual “round table”. The facilitator can pose a question and indicate who will go first, then people take their turn to speak as the conversation flows clockwise.</figcaption>
+            </figure>
           </center>
-
           <h4 align="center"> How to use The Round Table </h4>
           <div class="instructions">
             <ul>
               <li>Enter the names of the people in your call, one on each line. Click "Make it!"</li>
               <li>Share the image with your group, so that everyone can see the table.</li>
-              <ul>
-                <li>You can share a screenshot with your group, or just share screen in your call.</li>
-                <li>If people join or leave the call, you can always modify the table using the "Update participants" button.</li>
-                <li>The image generated by this tool is not accessible for participants using a screen reader. If this is relevant for your group, please remember to share the image description text.</li>
-
-              </ul>
+              <li>
+                <ul>
+                  <li>You can share a screenshot with your group, or just share screen in your call.</li>
+                  <li>If people join or leave the call, you can always modify the table using the "Update participants" button.</li>
+                  <li>The image generated by this tool is not accessible for participants using a screen reader. If this is relevant for your group, please remember to share the image description text.</li>
+                </ul>
+              </li>
               <li>Indicate who will start speaking, and that the turns will be taken in order flowing clockwise.</li>
-              <ul>
-                <li>We found that for our book club, the person indicated would take their turn, then others could pipe in with any additional thoughts. When that conversation finished, the next person on the table would speak/start the next round of conversation.</li>
-                <li>We recommend indicating special roles such as moderator by
-                  adding *s when entering the names.</li>
-              </ul>
+              <li>
+                <ul>
+                  <li>We found that for our book club, the person indicated would take their turn, then others could pipe in with any additional thoughts. When that conversation finished, the next person on the table would speak/start the next round of conversation.</li>
+                  <li>We recommend indicating special roles such as moderator by adding *s when entering the names.
+                  </li>
+                </ul>
+              </li>
             </ul>
-            <br /> </div>
+            <br />
+          </div>
           <h4 align="center"> When to use The Round Table </h4>
           <div class="instructions">
             <ul>
@@ -145,7 +122,6 @@
             </ul>
             <br />Please share any feedback with us at roundtabletool [at] gmail [dot] com.
           </div>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -153,43 +129,49 @@
       </div>
     </div>
   </div>
-
   <div class="modal fade" id="storyModal" tabindex="-1" role="dialog" aria-labelledby="storyModal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-body">
-
           <h4 align="center"> Our Story </h4>
           <br />
           <div class="instructions">
-            In zoom meetings for our “Race After Technology” book club, we found that when people could see themselves "sitting at the table", it not only visually got everyone on the same page, but also created accountability for showing up and a clear view of where
-            we were in our conversation and whose turn it was to speak, and helped the facilitator do the work of facilitation without having to be ever-present and choosing speakers on the fly.
-
-            <br /> <br /> This started as Neha's project for <a href="https://www.shutdownstem.com/">#ShutdownSTEM</a>, inspired by graphics Melanie had created. Increasing awareness of racial injustice in the US following the murders of George Floyd
+            This started as Neha's project for <a href="https://www.shutdownstem.com/">#ShutdownSTEM</a>, inspired by graphics Melanie had created. Increasing awareness of racial injustice in the US following the murders of George Floyd
             and Breonna Taylor among so many others has resulted in
             <a href="https://slate.com/culture/2020/06/antiracist-books-sold-out-amazon-george-floyd-protests.html">
-        a rush to purchase anti-racist books</a>. This tool was intended to support readers' efforts in the virtual book clubs where many are learning about racial inequity and antiracism in a community environment.
-
+                     a rush to purchase anti-racist books</a>. This tool was intended to support readers' efforts in the virtual book clubs where many are learning about racial inequity and antiracism in a community environment.
             <br /> <br /> Please share any feedback with us at roundtabletool [at] gmail [dot] com.
             <br /> <br />
-
             <p>Developed by <a href="http://nnkennard.github.io/" target="_blank">
-            Neha Kennard</a> &nbsp;|&nbsp; Design by <a href="https://www.linkedin.com/in/melaniekingdollie/" target="_blank"> Melanie King-Dollie </a> <br/></p>
-
+                        Neha Kennard</a> &nbsp;|&nbsp; Design by <a href="https://www.linkedin.com/in/melaniekingdollie/" target="_blank"> Melanie King-Dollie </a> <br/>
+            </p>
           </div>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-
-    <script src="scripts/drawing.js"></script>
+  </div>
+  <div class="modal fade" id="textModal" tabindex="-1" role="dialog" aria-labelledby="textModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <label for="info">Center text </label>
+          <small for="info" id="infoHelp" class="form-text text-muted"> <br />This text (up to 45 chars) will appear in the center of the table</small>
+          <input type="text" id="centerTextForm" name="centerTextForm" class="form-control" maxlength="45">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-sml" data-dismiss="modal" onclick="updateCenterText(true)">Save</button>
+          <button type="button" class="btn btn-default btn-sml" data-dismiss="modal" onclick="updateCenterText(false)">Restore default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+  <script src="scripts/drawing.js"></script>
 </body>
 
 </html>

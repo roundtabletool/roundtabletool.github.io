@@ -27,23 +27,49 @@ function switchTab() {
   switch (newTab) {
     case 0:
       drawInitial();
+      document.getElementById("buttonDiv").style.display = "none";
       break;
     case 1:
       addNamesToCircle();
+      document.getElementById("buttonDiv").style.display = "block";
       break;
   }
   currentTab = newTab;
+}
+
+function getCurrentCenterText(){
+  maybeCenterText = document.getElementById("centerText").textContent;
+  console.log("hi!");
+  console.log(maybeCenterText);
+  if (maybeCenterText == ""){
+    return DEFAULT_CENTER_TEXT;
+  } else {
+    return maybeCenterText;
+  }
+}
+
+DEFAULT_CENTER_TEXT = "Choose who will start, then flow clockwise."
+
+function updateCenterText(custom){
+  if (custom) {
+   document.getElementById("centerTextPrefix").innerHTML = "Custom center text:";
+   document.getElementById("centerText").innerHTML = document.getElementById("centerTextForm").value; 
+  }
+  else {
+    document.getElementById("centerTextPrefix").innerHTML = "Default center text:";
+    document.getElementById("centerText").innerHTML = DEFAULT_CENTER_TEXT;
+  }
 }
 
 function redrawBackground(showingTable) {
   canvas = document.getElementById("canvas");
   if (showingTable) {
     backgroundSize = "contain"; // Ensmallen the background if showing the table with names
-    minHeight = "700px";
   } else {
     backgroundSize = "cover";
-    minHeight = "650px";
   }
+
+  minHeight = "620px";
 
   for (elementName of ["formBackDrop", "displayBackDrop"]) {
     backDrop = document.getElementById(elementName);
@@ -83,8 +109,8 @@ function getCircleInfo(canvas) {
   return {
     centre_x: canvas.width / 2,
     centre_y: canvas.height / 2,
-    radius: canvas.height * 0.44,
-    textRadius: canvas.height * 0.44 * 1.1
+    radius: canvas.height * 0.45,
+    textRadius: canvas.height * 0.45 * 1.1
   };
 }
 
@@ -100,7 +126,6 @@ SMALL_FONT = "24px Reem Kufi";
 
 function getFormat(names) {
   totalNames = names["left"].concat(names["right"]).length;
-  console.log(totalNames);
   if (totalNames > 40) {
     startAngle = MORE_NAMES_START_ANGLE;
     angleSpan = MORE_NAMES_SPAN;
@@ -150,7 +175,7 @@ function addNamesToCircle() {
   ctx.textAlign = "center";
   ctx.font = LARGE_FONT;
   ctx.fillText(
-    "Choose who will start, then flow clockwise",
+    getCurrentCenterText(),
     circle["centre_x"],
     circle["centre_y"]
   );
