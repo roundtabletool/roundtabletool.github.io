@@ -181,6 +181,8 @@ function addNamesToCircle() {
   );
   redrawBackground(true);
   var allNames = names["right"].concat(names["left"]);
+
+  document.getElementById("show").style.display = "inline";
   descriptionDiv = document.getElementById("textDes");
   descriptionDiv.innerHTML =
     '<div class="imgDesc" >Image description: A white circle with a black outline, around which the following names are arranged:\n' +
