@@ -119,7 +119,8 @@ a.fancy {
 
 .outline {
   background-color: transparent;
-  color: inherit;
+  border-color: #000000;
+  color: #000000;
   text-decoration: none !important;
   transition: all 0.25s;
   float: right;
@@ -128,8 +129,15 @@ a.fancy {
 }
 
 .btn.outline {
-  color: #888888;
-  border-color: #999999;
+  color: #000000;
+  border-color: #000000;
+}
+
+.btn.outline:hover,
+.btn.outline:active,
+.btn.outline:focus,
+.btn.outline.active {
+  color: #ffffff;
 }
 
 /* Hide all steps by default: */
