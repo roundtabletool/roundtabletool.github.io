@@ -252,12 +252,12 @@ function drawFilledCircle(canvas) {
 }
 
 function resize() {
-  spacerOuter = document.getElementById("spacerAboveButton");
-  if ($(window).width() < 1000) {
-    spacerOuter.style.display = "block";
-  } else {
-    spacerOuter.style.display = "none";
-  }
+  // spacerOuter = document.getElementById("spacerAboveButton");
+  // if ($(window).width() < 1000) {
+  //   spacerOuter.style.display = "block";
+  // } else {
+  //   spacerOuter.style.display = "none";
+  // }
 }
 
 $(window).on("resize", resize);
